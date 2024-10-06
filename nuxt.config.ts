@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/app.scss'],
   ssr: true,
+
   app: {
     head: {
       title: 'Biztos Alkuszom',
@@ -44,29 +45,33 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/image',
-    '@nuxtjs/sitemap',
-    [
-      'nuxt-mail',
-      {
-        message: {
-          to: 'web@alkuszom.info',
-        },
-        smtp: {
-          host: 's56.tarhely.com',
-          port: 587,
-          auth: {
-            user: 'web@alkuszom.info',
-            pass: '#+SpM_HR~QCy',
-          },
+  modules: ['@nuxt/image', '@nuxtjs/sitemap', [
+    'nuxt-mail',
+    {
+      message: {
+        to: 'web@alkuszom.info',
+      },
+      smtp: {
+        host: 's56.tarhely.com',
+        port: 587,
+        auth: {
+          user: 'web@alkuszom.info',
+          pass: '#+SpM_HR~QCy',
         },
       },
-    ],
-  ],
+    },
+  ], 'nuxt-graphql-client'],
 
   site: {
     url: 'https://www.alkuszom.info',
     trailingSlash: true,
   },
+
+  runtimeConfig: {
+    public: {
+      GQL_HOST: 'http://127.0.0.1:8001/graphql' 
+    }
+  },
+
+  compatibilityDate: '2024-10-06',
 })
